@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Melon Front</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <!-- 서버 실행 : python -m http.server 3000 -->
+  <ul class="artist-list">
+
+  </ul>
+  <input type="button" value="다음페이지" onclick="clickMoreArtistsButton()"/>
+  <button id="btnMoreArtists" class="btn">더 보기</button>
+
+  <div id="template">
+    <!-- 리스트 아이템 블럭 -->
+    <li id="artist-item-template" class="artist-item">
+      <span class="artist-name"></span>
+      <img class="artist-img-profile" src="" alt="" >
+    </li>
+  </div>
+
+  <script src="js/axios.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/artist-list.js"></script>
+  <script type="text/javascript">
+
+  </script>
+</body>
+</html>
