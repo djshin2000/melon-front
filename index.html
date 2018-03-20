@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Melon Front</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <!-- 서버 실행 : python -m http.server 3000 -->
+  <ul class="artist-list">
+
+  </ul>
+
+  <div id="template">
+    <!-- 리스트 아이템 블럭 -->
+    <li id="artist-item-template" class="artist-item">
+      <span class="artist-name"></span>
+      <img class="artist-img-profile" src="" alt="" >
+    </li>
+  </div>
+
+  <script src="js/axios.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript">
+    //1. axios를 사용해서 ArtistList를 요청하기
+    //2. 돌아온 응답 데이터의 'results' 값을 순회하며 jQuery를 사용해 .artist-item을
+    //    .artist-list의 내부에 추가
+    function get_api_data (urls) {
+      axios.get(urls)
+      .then(function (response) {
+        console.log(response)
+        var artists = response.data.results;
+        // var nextpage = reponse.data.next;
+        // console.log(artists)
+        for (var i = 0; i < artists.length; i++) {
+          var currentArtist = artists[i];
+          // console.log(currentArtist)
+          var curArtistElement = $('#artist-item-template').clone();
+          curArtistElement.find('.artist-name').text(currentArtist.name);
+          curArtistElement.find('.artist-img-profile').attr('src', currentArtist.img_profile);
+          $('.artist-list').append(curArtistElement);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+    get_api_data ('http://localhost:8000/api/artist/')
+  </script>
+</body>
+</html>
